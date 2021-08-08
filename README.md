@@ -27,21 +27,11 @@
    - Find the container IP address
       ```
       "NetworkSettings": {
-            "Bridge": "",
-            "SandboxID": "b012106e56b924be3f01ef6168d7ffdba5f472301c13b9baac6f2c15ef4b9c69",
-            "HairpinMode": false,
-            "LinkLocalIPv6Address": "",
-            "LinkLocalIPv6PrefixLen": 0,
+            ....
             "Ports": {
                 "27017/tcp": null
             },
-            "SandboxKey": "/var/run/docker/netns/b012106e56b9",
-            "SecondaryIPAddresses": null,
-            "SecondaryIPv6Addresses": null,
-            "EndpointID": "934f044019f760bee07b726d82ca70ab4b2aaf9d9e0c1f991384c6d3b5f77c4f",
-            "Gateway": "172.17.0.1",
-            "GlobalIPv6Address": "",
-            "GlobalIPv6PrefixLen": 0,
+            ....
             "IPAddress": "172.17.0.3",
       ```
    - Use the ip to connect to the mongodb db in container
