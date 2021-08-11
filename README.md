@@ -45,3 +45,23 @@
          }
          ```
       - Go to or `http://localhost:3000/favorites` to test 
+
+## Creating container networks
+
+* We can create docker container networks. Within a docker network all containers can communicate with each other and IPs are automatically resolved.
+   - Stop and remove both running containers
+   - Create a docker network
+      - `docker network create network-test`
+      - `docker network ls` - confirm network was created
+   - Create and run a new mongodb container in the newly created network
+      - `docker run -d --name mongodb --network network-test mongo:5.0.2`
+      - We don't specify the mongodb database port here using -p. That's because we don't plan to connect to it from outside the containers network. 
+   - Now you can use the mongodb containers `name` in the url
+      - `mongodb://172.17.0.3:27017/swfavorites`
+      - to this
+      - `mongodb://mongodb:27017/swfavorites`
+   - We don't need to recreate the image as the code is refreshed using a bind mount
+   - Now lets start our container again in the network.
+      - `docker run -p 3000:8081 --env-file ./.env -d --name network-app --network network-test --rm -v $(pwd):/app:ro docker-networking:initial`
+      - Unlike when starting the mongodb container we still specify the ports here using -p. That's because we connect to that from our localhost and also when hosted we want it available via www.
+
